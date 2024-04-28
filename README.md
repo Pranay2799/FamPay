@@ -6,7 +6,7 @@ This project is a simple Flask application that fetches and stores the latest Yo
 ### Prerequisites
 - Python 3.x installed on your system
 - YouTube Data API key
-- 
+
 ### Installation
 1. Clone the repository:
 
