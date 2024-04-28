@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest YouTube Videos</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4"> YouTube Videos</h1>
+        <div id="videos" class="row"></div>
+    </div>
+
+    <script>
+        async function fetchVideos() {
+            try {
+                const response = await fetch('/videos');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching videos:', error);
+            }
+        }
+
+        async function renderVideos() {
+            const videosContainer = document.getElementById('videos');
+            const videos = await fetchVideos();
+
+            if (videos) {
+                videos.forEach(video => {
+                    const videoHtml = `
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="${video.thumbnail_url}" class="card-img-top" alt="Thumbnail">
+                                <div class="card-body">
+                                    <h5 class="card-title">${video.title}</h5>
+                                    <p class="card-text">${video.description}</p>
+                                    <p class="card-text"><small class="text-muted">${video.publish_datetime}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    videosContainer.innerHTML += videoHtml;
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVideos();
+        });
+    </script>
+</body>
+</html>

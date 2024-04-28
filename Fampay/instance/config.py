@@ -1,0 +1,2 @@
+YOUTUBE_API_KEY = 'AIzaSyCmdW_hKONaOvWUZaUj7xu7ca1-s3tTD_E'
+SEARCH_QUERY = 'Cricket'
